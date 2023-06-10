@@ -1,0 +1,100 @@
+﻿@*@model IEnumerable<Email_Sender.Data.MailRequest>
+*@ 
+@model Email_Sender.Data.CreateVM
+
+<div class="mb-3">
+    <div asp-validation-summary="ModelOnly"></div>
+    <form asp-action="Add" method="post">
+
+        <div class="mb-3 col-md-4">
+
+            <label  class="form-label col-md-4 ">Subject</label>
+            <input  asp-for="input.Subject" name="Subject" type="text" class="form-control Subject form-control-lg col-md-4">
+            <span asp-validation-for="input.Subject" class="text-danger field-validation-error"></span>
+
+
+        </div>
+        <div class="mb-3 col-md-4">
+            <label class="form-label">Message</label>
+            <input  asp-for="input.Message" name="Message" type="text" class="form-control Message form-control-lg">
+            <span asp-validation-for="input.Message" class="text-danger field-validation-error"></span>
+
+        </div>
+        <button type="submit" class="btn btn-primary add">Add</button>
+    </form>
+</div>
+<table class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+        <tr>
+            <th>Subject</th>
+            <th>Send</th>
+
+        </tr>
+    </thead>
+    <tbody id="body">
+        @foreach (var item in Model.dis)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model=>item.Subject)
+
+                </td>
+
+                <td>
+                    <a class="Send"
+                   title="Send"
+                   role="button"
+                   data-id="@item.Id"
+                   asp-action="Send"
+                   asp-route-id="@item.Id">
+
+
+                        Send
+                    </a>
+                </td>
+
+            </tr>
+
+
+        }
+
+
+
+    </tbody>
+</table>
+@section Scripts
+{
+  <partial name="_ValidationScriptsPartial"/>    
+
+}
+@*<script>
+
+    $(document).ready(function()
+    {
+
+        //$('.add').on('click',function(){
+        //    let obj={
+        //        Subject:$('.Subject').val(),
+        //        Message:$('.Message').val(),
+
+        //    }
+        //     $.ajax({
+        //          url:'/EmailsRequest/Add/',
+        //          method:'POST',
+        //          data:obj,
+        //          success:function(res){
+
+
+        //               },
+        //           error:function(res){
+
+        //           },
+
+
+        //     });
+        //});
+
+
+    });
+</script>
+*@

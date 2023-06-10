@@ -1,0 +1,16 @@
+﻿@model Email_Sender.Models.SendMailVm
+
+<form asp-action="SendTo">
+  <input class="form-control form-control-lg"
+    type="hidden" name="Id" id="Id" value="@ViewBag.Id" asp-for="Id"
+    >
+<div class="mb-3 row col-md-5" >
+  <label asp-for="ToEmail" class="form-label">To</label>
+    <input class="form-control form-control-lg"
+    type="text" asp-for="ToEmail"
+    >
+</div>
+<button type="submit" class="btn btn-primary">Send</button>
+
+<a asp-action="Create" type="button" class="btn btn-secondary">Back</a>
+</form>
